@@ -6,27 +6,28 @@
   <title>Game Mods</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* Ajoutez ici vos styles CSS */
     /* Modal Styles */
     .modal {
-      display: none;
+      display: none; /* Cacher la modale initialement */
       position: fixed;
       z-index: 1;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
       padding-top: 60px;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.5s ease, transform 0.3s ease-in-out;
+      opacity: 0; /* Initialement invisible */
+      transform: scale(0.9); /* Commence avec un léger zoom */
+      transition: opacity 0.5s ease, transform 0.3s ease-in-out; /* Animation de fondu et zoom */
     }
 
+    /* Quand la modale est ouverte */
     .modal.show {
       display: block;
-      opacity: 1;
-      transform: scale(1);
+      opacity: 1; /* La rendre visible */
+      transform: scale(1); /* Agrandir à la taille normale */
     }
 
     .modal-content {
@@ -95,7 +96,6 @@
     .download-btn:hover {
       background-color: #2980b9;
     }
-
   </style>
 </head>
 <body>
@@ -119,82 +119,46 @@
       <select>
         <option>V60.420</option>
       </select>
-      <button class="download-btn" id="download-btn-hackbrawl">⬇️ Download</button>
-    </div>
-
-    <!-- Roblox Hack Mod -->
-    <div class="mod-card">
-      <h2>Roblox Hack (ExoExecutor)</h2>
-      <div class="badges">
-        <span>Private server</span>
-        <span>Supports PC</span>
-        <span>Supports Mac</span>
-      </div>
-      <p>
-        ExoExecutor allows you to fly, teleport, and use powerful hacks like aimbot and wallhack to dominate Roblox games. Unlock endless possibilities and take control of your gameplay with ease.
-      </p>
-      <select>
-        <option>Latest Version</option>
-      </select>
-      <button class="download-btn" id="download-btn-roblox">⬇️ Download</button>
-    </div>
-
-    <!-- Null's Brawl Mod -->
-    <div class="mod-card">
-      <h2>Null's Brawl</h2>
-      <div class="badges">
-        <span>Private server</span>
-        <span>Supports iOS</span>
-        <span>Supports Android</span>
-      </div>
-      <p>
-        Null's Brawl is a Brawl Stars private server offering unlimited gems, gold, and boxes. Play with any brawler you like, and enjoy a custom gaming experience without limits. Unlock endless possibilities!
-      </p>
-      <select>
-        <option>Latest Version</option>
-      </select>
-      <button class="download-btn" id="download-btn-nulls">⬇️ Download</button>
+      <button class="download-btn" id="downloadBtn">⬇️ Download</button>
     </div>
   </main>
 
-  <!-- Modal -->
-  <div id="downloadModal" class="modal">
+  <!-- Modale -->
+  <div id="myModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Sign Up to Download</h2>
-        <span class="close" id="closeModal">&times;</span>
+        <h2>Inscription requise</h2>
+        <span class="close">&times;</span>
       </div>
       <div class="modal-body">
-        <p>To download the mod, please sign up and choose a login method:</p>
-        <button class="modal-btn" id="google-login">Sign Up with Google</button>
+        <p>Pour télécharger ce mod, vous devez vous inscrire. Vous pouvez vous inscrire via Google ou un autre service.</p>
+        <button class="modal-btn">Inscription avec Google</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Modal Logic
-    const modal = document.getElementById("downloadModal");
-    const closeModal = document.getElementById("closeModal");
-    const buttons = document.querySelectorAll(".download-btn");
+    // JavaScript pour l'animation de fondu et ouvrir/fermer la modale
+    const modal = document.getElementById("myModal");
+    const btn = document.getElementById("downloadBtn");
+    const closeBtn = document.querySelector(".close");
 
-    // Open modal with animation
-    buttons.forEach(button => {
-      button.addEventListener("click", () => {
-        modal.classList.add("show");
-      });
-    });
+    // Ouvrir la modale avec animation
+    btn.onclick = function() {
+      modal.classList.add("show");
+    }
 
-    // Close modal
-    closeModal.addEventListener("click", () => {
+    // Fermer la modale
+    closeBtn.onclick = function() {
       modal.classList.remove("show");
-    });
+    }
 
-    // Close modal when clicking outside of it
-    window.addEventListener("click", (event) => {
+    // Fermer la modale en cliquant en dehors de la fenêtre modale
+    window.onclick = function(event) {
       if (event.target === modal) {
         modal.classList.remove("show");
       }
-    });
+    }
   </script>
 </body>
 </html>
