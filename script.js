@@ -1,8 +1,2 @@
-// Pour la recherche (optionnelle)
-document.querySelector('.search-bar input').addEventListener('input', function () {
-  const query = this.value.toLowerCase();
-  document.querySelectorAll('.mod-card').forEach(card => {
-    const title = card.querySelector('h2').innerText.toLowerCase();
-    card.style.display = title.includes(query) ? '' : 'none';
-  });
-});
+const domain = 'dev-2uu45l4loz1pro6h.us.auth0.com'; // Ton domaine Auth0
+const clientId = '6n9YQY2sjOg81AnCRMpdB5iENwatgXl1'; // Ton Client ID Auth0
