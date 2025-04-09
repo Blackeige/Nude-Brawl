@@ -15,33 +15,53 @@
       top: 0;
       width: 100%;
       height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
       overflow: auto;
-      background-color: rgb(0, 0, 0);
-      background-color: rgba(0, 0, 0, 0.4);
       padding-top: 60px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .modal.show {
+      display: block;
+      opacity: 1;
     }
 
     .modal-content {
-      background-color: #fefefe;
+      background-color: #2c3e50;
+      color: white;
       margin: 5% auto;
       padding: 20px;
-      border: 1px solid #888;
+      border-radius: 10px;
       width: 80%;
       max-width: 500px;
+      border: 2px solid #34495e;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 24px;
     }
 
     .close {
-      color: #aaa;
-      float: right;
+      color: #ccc;
       font-size: 28px;
-      font-weight: bold;
+      cursor: pointer;
     }
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
+    .close:hover {
+      color: #fff;
+    }
+
+    .modal-body {
+      margin-top: 20px;
     }
 
     .modal-btn {
@@ -50,12 +70,30 @@
       background-color: #4CAF50;
       color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
+      width: 100%;
+      font-size: 16px;
     }
 
     .modal-btn:hover {
       background-color: #45a049;
     }
+
+    .download-btn {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .download-btn:hover {
+      background-color: #2980b9;
+    }
+
   </style>
 </head>
 <body>
@@ -79,7 +117,7 @@
       <select>
         <option>V60.420</option>
       </select>
-      <button class="download-btn" onclick="openModal()">Download</button>
+      <button class="download-btn" id="download-btn-hackbrawl">⬇️ Download</button>
     </div>
 
     <!-- Roblox Hack Mod -->
@@ -96,7 +134,7 @@
       <select>
         <option>Latest Version</option>
       </select>
-      <button class="download-btn" onclick="openModal()">Download</button>
+      <button class="download-btn" id="download-btn-roblox">⬇️ Download</button>
     </div>
 
     <!-- Null's Brawl Mod -->
@@ -108,47 +146,53 @@
         <span>Supports Android</span>
       </div>
       <p>
-        Null's Brawl is a Brawl Stars private server with unlimited gems, gold, and boxes. Play with friends on any brawler you want and unlock endless possibilities. Closed Source, don't use that. Private Server.
+        Null's Brawl is a Brawl Stars private server with unlimited gems, gold, and boxes. Play with friends on any brawler you want and unlock endless possibilities.
       </p>
       <select>
         <option>Latest Version</option>
       </select>
-      <button class="download-btn" onclick="openModal()">Download</button>
+      <button class="download-btn" id="download-btn-nulls">⬇️ Download</button>
     </div>
   </main>
 
-  <!-- The Modal -->
-  <div id="signupModal" class="modal">
+  <!-- Modal -->
+  <div id="downloadModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Sign Up to Download</h2>
-      <p>Please sign up to proceed with the download. You can use one of the following methods:</p>
-      <button class="modal-btn">Sign Up with Google</button>
-      <button class="modal-btn">Sign Up with Facebook</button>
-      <button class="modal-btn">Sign Up with Email</button>
+      <div class="modal-header">
+        <h2>Sign Up to Download</h2>
+        <span class="close" id="closeModal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>To download the mod, please sign up and choose a login method:</p>
+        <button class="modal-btn" id="google-login">Sign Up with Google</button>
+      </div>
     </div>
   </div>
 
   <script>
-    // Get the modal
-    var modal = document.getElementById("signupModal");
+    // Modal Logic
+    const modal = document.getElementById("downloadModal");
+    const closeModal = document.getElementById("closeModal");
+    const buttons = document.querySelectorAll(".download-btn");
 
-    // Function to open the modal
-    function openModal() {
-      modal.style.display = "block";
-    }
+    // Open modal
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        modal.classList.add("show");
+      });
+    });
 
-    // Function to close the modal
-    function closeModal() {
-      modal.style.display = "none";
-    }
+    // Close modal
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
 
-    // Close the modal if the user clicks anywhere outside of the modal
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
+    // Close modal when clicking outside of it
+    window.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        modal.classList.remove("show");
       }
-    }
+    });
   </script>
 </body>
 </html>
