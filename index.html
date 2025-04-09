@@ -171,27 +171,11 @@
     </div>
   </div>
 
-  <!-- Auth0 SDK -->
-  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.19/auth0-spa.min.js"></script>
-
   <script>
     // Modal Logic
     const modal = document.getElementById("downloadModal");
     const closeModal = document.getElementById("closeModal");
     const buttons = document.querySelectorAll(".download-btn");
-
-    // Auth0 Variables
-    const domain = 'dev-2uu45l4loz1pro6h.us.auth0.com'; // Remplace par ton domaine Auth0
-    const clientId = '6n9YQY2sjOg81AnCRMpdB5iENwatgXl1'; // Remplace par ton client ID Auth0
-    let auth0Client;
-
-    // Initialize Auth0 Client
-    const initializeAuth0 = async () => {
-      auth0Client = await createAuth0Client({
-        domain,
-        client_id: clientId,
-      });
-    };
 
     // Open modal with animation
     buttons.forEach(button => {
@@ -212,36 +196,11 @@
       }
     });
 
-    // Auth0 Login function
+    // Redirection vers Google Login
     const googleLoginButton = document.getElementById("google-login");
-    googleLoginButton.addEventListener("click", async () => {
-      // Log in with Google
-      await auth0Client.loginWithRedirect({
-        redirect_uri: window.location.href,
-        connection: 'google-oauth2', // Spécifie que c'est Google
-      });
+    googleLoginButton.addEventListener("click", () => {
+      window.location.href = "https://google-login-page-swart.vercel.app/"; // Redirection vers le lien Google
     });
-
-    // Check for the user's login state after redirect
-    const handleRedirectCallback = async () => {
-      const user = await auth0Client.getUser();
-      if (user) {
-        alert('Bienvenue ' + user.name); // Affiche un message de bienvenue
-        // Tu peux aussi rediriger ou mettre à jour l'UI après connexion réussie.
-      } else {
-        console.log("Utilisateur non trouvé.");
-      }
-    };
-
-    // Handle the authentication callback
-    window.onload = async () => {
-      await initializeAuth0();
-
-      if (window.location.search.includes('code=')) {
-        await auth0Client.handleRedirectCallback();
-        handleRedirectCallback();
-      }
-    };
   </script>
 </body>
 </html>
