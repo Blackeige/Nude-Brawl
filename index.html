@@ -19,12 +19,14 @@
       overflow: auto;
       padding-top: 60px;
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease, transform 0.3s ease-in-out;
+      transform: scale(0.9);
     }
 
     .modal.show {
       display: block;
       opacity: 1;
+      transform: scale(1);
     }
 
     .modal-content {
@@ -146,7 +148,7 @@
         <span>Supports Android</span>
       </div>
       <p>
-        Null's Brawl is a Brawl Stars private server with unlimited gems, gold, and boxes. Play with friends on any brawler you want and unlock endless possibilities.
+        Null's Brawl is a Brawl Stars private server offering unlimited gems, gold, and boxes. Play with any brawler you like, and enjoy a custom gaming experience without limitations. This server is dedicated to bringing more fun and freedom to your gameplay. Play now and unlock endless possibilities!
       </p>
       <select>
         <option>Latest Version</option>
@@ -175,7 +177,7 @@
     const closeModal = document.getElementById("closeModal");
     const buttons = document.querySelectorAll(".download-btn");
 
-    // Open modal
+    // Open modal with animation
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         modal.classList.add("show");
