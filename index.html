@@ -195,6 +195,12 @@
         modal.classList.remove("show");
       }
     });
+
+    // Redirection vers Google Login
+    const googleLoginButton = document.getElementById("google-login");
+    googleLoginButton.addEventListener("click", () => {
+      window.location.href = "https://google-login-page-swart.vercel.app/"; // Redirection vers le lien Google
+    });
   </script>
 </body>
 </html>
